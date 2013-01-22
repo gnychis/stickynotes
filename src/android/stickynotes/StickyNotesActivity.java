@@ -106,12 +106,14 @@ public class StickyNotesActivity extends Activity {
         if (!mWriteMode && NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
             NdefMessage[] msgs = getNdefMessages(intent);
             promptForContent(msgs[0]);
+            Log.d(TAG, "ACTION_NDEF_DISCOVERED");
         }
 
         // Tag writing mode
         if (mWriteMode && NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
             Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             writeTag(getNoteAsNdef(), detectedTag);
+            Log.d(TAG, "ACTION_TAG_DISCOVERED");
         }
     }
 
